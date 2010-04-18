@@ -20,27 +20,29 @@ int main (int argc, const char * argv[]) {
 	
 	char cpi[10], interval[10], aht[10], svl_goal[10], asa_goal[10];
 	int		i_cpi, i_interval, i_aht, i_svl_goal, i_asa_goal;
+	printf("==================================================================================\n");
+	printf("Welcome to the Erlang C Calculator!\nCopyright (c) 2010 by Gethryn Ghavalas\n");
+	printf("==================================================================================\n\n\n");
 	
-	printf("Welcome to the Erlang C Calculator! \n\n");
-	
-	printf("Please enter your calls per interval: ");
+	printf("Please supply the following:\n\n");
+	printf("Calls per interval (or Number of Calls Offered): ");
 	fgets(cpi, 10, stdin);
 	//cpi[strlen(cpi)-1] = 0;
 	//scanf("%d", &cpi);
 	
-	printf("Please enter your interval length [1800]: ");
+	printf("Interval length in secs [1800]: ");
 	fgets(interval, 10, stdin);
 	//scanf("%d",&interval);
 	
-	printf("Please enter your AHT in secs: ");
+	printf("AHT in secs: ");
 	fgets(aht, 10, stdin);
 	//scanf("%d",&aht);
 	
-	printf("Please enter your Service Level goal (%%) [80]: ");
+	printf("Service Level goal (%%) [80]: ");
 	fgets(svl_goal, 10, stdin);
 	//scanf("%d",&svl_goal);
 	
-	printf("Please enter your Service Level goal (asa) [20]: ");
+	printf("Service Level goal (asa) [20]: ");
 	fgets(asa_goal, 10, stdin);
 	//scanf("%d",&asa_goal);
 	
@@ -149,17 +151,17 @@ int how_many_agents (double cpi, double interval, double aht, double svl_goal, d
 			optimum_svl = true;
 			optimum_m = i;
 			low_m = i - 5;
-			high_m = i + 5;
+			high_m = i + 10;
 		}
 		i++;
 	}
 	
-	printf("The following table shows the optimum number of agents (and +/-5 agents)\n");
+	printf("The following table shows the optimum number of agents (-5 <= opt <= +10)\n");
 	printf("for %g NCO with AHT of %g secs (in a %g sec interval)\nand a service level of %g%% in %g secs:\n\n",
 		   cpi, aht, interval, svl_goal, asa_goal);
 	
 	for (i = low_m; i <= high_m; i++) {
-		printf("%03i agents:\t\tOCC = %5.1f%%,\t\tSVL = %5.1f%%,\t\tASA = %7.1f\n",
+		printf("%03i agents:\t\tOCC = %5.1f%%\t\tSVL = %5.1f%%\t\tASA = %7.1f\n",
 			   i, agent_occ(cpi, interval, aht, i)*100, svl(cpi,interval,aht,i,asa_goal)*100, asa(cpi,interval,aht,i));
 	}
 
