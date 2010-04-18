@@ -1,0 +1,120 @@
+// !$*UTF8*$!
+{
+	08FB7793FE84155DC02AAC07 /* Project object */ = {
+		activeBuildConfigurationName = Debug;
+		activeExecutable = 492B12F511790AA000EBFC36 /* ErlangC_CommandLine */;
+		activeTarget = 8DD76FA90486AB0100D96B5E /* ErlangC_CommandLine */;
+		codeSenseManager = 492B12FA11790ABF00EBFC36 /* Code sense */;
+		executables = (
+			492B12F511790AA000EBFC36 /* ErlangC_CommandLine */,
+		);
+		perUserDictionary = {
+			PBXConfiguration.PBXFileTableDataSource3.PBXFileTableDataSource = {
+				PBXFileTableDataSourceColumnSortingDirectionKey = "-1";
+				PBXFileTableDataSourceColumnSortingKey = PBXFileDataSource_Filename_ColumnID;
+				PBXFileTableDataSourceColumnWidthsKey = (
+					20,
+					993,
+					20,
+					48.16259765625,
+					43,
+					43,
+					20,
+				);
+				PBXFileTableDataSourceColumnsKey = (
+					PBXFileDataSource_FiletypeID,
+					PBXFileDataSource_Filename_ColumnID,
+					PBXFileDataSource_Built_ColumnID,
+					PBXFileDataSource_ObjectSize_ColumnID,
+					PBXFileDataSource_Errors_ColumnID,
+					PBXFileDataSource_Warnings_ColumnID,
+					PBXFileDataSource_Target_ColumnID,
+				);
+			};
+			PBXPerProjectTemplateStateSaveDate = 293196462;
+			PBXWorkspaceStateSaveDate = 293196462;
+		};
+		perUserProjectItems = {
+			492B136011791C8600EBFC36 = 492B136011791C8600EBFC36 /* PBXTextBookmark */;
+			492B13961179822B00EBFC36 = 492B13961179822B00EBFC36 /* PBXTextBookmark */;
+		};
+		sourceControlManager = 492B12F911790ABF00EBFC36 /* Source Control */;
+		userBuildSettings = {
+		};
+	};
+	08FB7796FE84155DC02AAC07 /* main.c */ = {
+		uiCtxt = {
+			sepNavIntBoundsRect = "{{0, 0}, {1171, 1222}}";
+			sepNavSelRange = "{1082, 0}";
+			sepNavVisRange = "{40, 1517}";
+		};
+	};
+	492B12F511790AA000EBFC36 /* ErlangC_CommandLine */ = {
+		isa = PBXExecutable;
+		activeArgIndices = (
+		);
+		argumentStrings = (
+		);
+		autoAttachOnCrash = 1;
+		breakpointsEnabled = 0;
+		configStateDict = {
+		};
+		customDataFormattersEnabled = 1;
+		dataTipCustomDataFormattersEnabled = 1;
+		dataTipShowTypeColumn = 1;
+		dataTipSortType = 0;
+		debuggerPlugin = GDBDebugging;
+		disassemblyDisplayState = 0;
+		dylibVariantSuffix = "";
+		enableDebugStr = 1;
+		environmentEntries = (
+		);
+		executableSystemSymbolLevel = 0;
+		executableUserSymbolLevel = 0;
+		libgmallocEnabled = 0;
+		name = ErlangC_CommandLine;
+		savedGlobals = {
+		};
+		showTypeColumn = 0;
+		sourceDirectories = (
+		);
+	};
+	492B12F911790ABF00EBFC36 /* Source Control */ = {
+		isa = PBXSourceControlManager;
+		fallbackIsa = XCSourceControlManager;
+		isSCMEnabled = 0;
+		scmConfiguration = {
+			repositoryNamesForRoots = {
+				"" = "";
+			};
+		};
+	};
+	492B12FA11790ABF00EBFC36 /* Code sense */ = {
+		isa = PBXCodeSenseManager;
+		indexTemplatePath = "";
+	};
+	492B136011791C8600EBFC36 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		comments = "Invalid type argument of 'unary *'";
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		rLen = 1;
+		rLoc = 43;
+		rType = 1;
+	};
+	492B13961179822B00EBFC36 /* PBXTextBookmark */ = {
+		isa = PBXTextBookmark;
+		fRef = 08FB7796FE84155DC02AAC07 /* main.c */;
+		name = "main.c: 23";
+		rLen = 0;
+		rLoc = 1082;
+		rType = 0;
+		vrLen = 1517;
+		vrLoc = 40;
+	};
+	8DD76FA90486AB0100D96B5E /* ErlangC_CommandLine */ = {
+		activeExec = 0;
+		executables = (
+			492B12F511790AA000EBFC36 /* ErlangC_CommandLine */,
+		);
+	};
+}

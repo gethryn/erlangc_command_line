@@ -1,0 +1,76 @@
+TErlangC_CommandLine
+v7
+r0
+t293145985.497832
+cCheck dependencies
+cCompileC build/ErlangC_CommandLine.build/Debug/ErlangC_CommandLine.build/Objects-normal/x86_64/main.o /Users/geth/Development/iPhone/ErlangC_CommandLine/main.c normal x86_64 c com.apple.compilers.gcc.4_2
+cLd /Users/geth/Development/iPhone/ErlangC_CommandLine/build/Debug/ErlangC_CommandLine normal x86_64
+
+N/Developer/SDKs/MacOSX10.6.sdk
+c000000004BA713D600000000000000EE
+t1269240790
+s238
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/math.h
+c000000004AC599B500000000000004F1
+t1254463925
+s1265
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/include/stdio.h
+c000000004AC59C820000000000004174
+t1254464642
+s16756
+
+N/Developer/SDKs/MacOSX10.6.sdk/usr/lib/gcc/i686-apple-darwin10/4.2.1/include/stdbool.h
+c000000004AC59DB70000000000000644
+t1254464951
+s1604
+
+N/Users/geth/Development/iPhone/ErlangC_CommandLine/build/Debug/ErlangC_CommandLine
+t1271453185
+s9144
+
+N/Users/geth/Development/iPhone/ErlangC_CommandLine/build/ErlangC_CommandLine.build/Debug/ErlangC_CommandLine.build/Objects-normal/x86_64/ErlangC_CommandLine.LinkFileList
+c000000004BC8D6000000000000000090
+t1271453184
+s144
+
+N/Users/geth/Development/iPhone/ErlangC_CommandLine/build/ErlangC_CommandLine.build/Debug/ErlangC_CommandLine.build/Objects-normal/x86_64/main.o
+t1271453179
+s3272
+
+N/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c
+c000000004BC8D5F90000000000000199
+t1271453177
+s409
+i<stdio.h>
+i<stdbool.h>
+i<math.h>
+
+CCheck dependencies
+r0
+lSLF07#2@18"Check dependencies293145984#293145984#0(0"0(0#1#0"4300739032#0"0#
+
+CCompileC build/ErlangC_CommandLine.build/Debug/ErlangC_CommandLine.build/Objects-normal/x86_64/main.o /Users/geth/Development/iPhone/ErlangC_CommandLine/main.c normal x86_64 c com.apple.compilers.gcc.4_2
+s293145984.341078
+e293145984.463630
+r1
+xCompileC
+xbuild/ErlangC_CommandLine.build/Debug/ErlangC_CommandLine.build/Objects-normal/x86_64/main.o
+x/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c
+xnormal
+xx86_64
+xc
+xcom.apple.compilers.gcc.4_2
+lSLF07#2@65"Compile /Users/geth/Development/iPhone/ErlangC_CommandLine/main.c293145984#293145984#0(215"/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c: In function 'main':/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c:13: warning: format '%d' expects type 'int', but argument 2 has type 'double'1(22@64"Format '%d' expects type 'int', but argument 2 has type 'double'293145984#79#136#0(6@57"/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c293145977#13#0#13#0#56"format '*' expects type '*', but argument * has type '*'0(0#0#57"/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c4300739032#1618"    cd /Users/geth/Development/iPhone/ErlangC_CommandLine    setenv LANG en_US.US-ASCII    /Developer/usr/bin/gcc-4.2 -x c -arch x86_64 -fmessage-length=0 -pipe -std=gnu99 -Wno-trigraphs -fpascal-strings -fasm-blocks -O0 -Wreturn-type -Wunused-variable -isysroot /Developer/SDKs/MacOSX10.6.sdk -mfix-and-continue -mmacosx-version-min=10.6 -gdwarf-2 -iquote /Users/geth/Development/iPhone/ErlangC_CommandLine/build/ErlangC_CommandLine.build/Debug/ErlangC_CommandLine.build/ErlangC_CommandLine-generated-files.hmap -I/Users/geth/Development/iPhone/ErlangC_CommandLine/build/ErlangC_CommandLine.build/Debug/ErlangC_CommandLine.build/ErlangC_CommandLine-own-target-headers.hmap -I/Users/geth/Development/iPhone/ErlangC_CommandLine/build/ErlangC_CommandLine.build/Debug/ErlangC_CommandLine.build/ErlangC_CommandLine-all-target-headers.hmap -iquote /Users/geth/Development/iPhone/ErlangC_CommandLine/build/ErlangC_CommandLine.build/Debug/ErlangC_CommandLine.build/ErlangC_CommandLine-project-headers.hmap -F/Users/geth/Development/iPhone/ErlangC_CommandLine/build/Debug -I/Users/geth/Development/iPhone/ErlangC_CommandLine/build/Debug/include -I/Users/geth/Development/iPhone/ErlangC_CommandLine/build/ErlangC_CommandLine.build/Debug/ErlangC_CommandLine.build/DerivedSources/x86_64 -I/Users/geth/Development/iPhone/ErlangC_CommandLine/build/ErlangC_CommandLine.build/Debug/ErlangC_CommandLine.build/DerivedSources -c /Users/geth/Development/iPhone/ErlangC_CommandLine/main.c -o /Users/geth/Development/iPhone/ErlangC_CommandLine/build/ErlangC_CommandLine.build/Debug/ErlangC_CommandLine.build/Objects-normal/x86_64/main.o0#
+
+CLd /Users/geth/Development/iPhone/ErlangC_CommandLine/build/Debug/ErlangC_CommandLine normal x86_64
+s293145984.463789
+e293145985.497443
+r1
+xLd
+x/Users/geth/Development/iPhone/ErlangC_CommandLine/build/Debug/ErlangC_CommandLine
+xnormal
+xx86_64
+lSLF07#2@87"Link /Users/geth/Development/iPhone/ErlangC_CommandLine/build/Debug/ErlangC_CommandLine293145984#293145985#0(0"0(0#0#0"32932993185022052#606"    cd /Users/geth/Development/iPhone/ErlangC_CommandLine    setenv MACOSX_DEPLOYMENT_TARGET 10.6    /Developer/usr/bin/gcc-4.2 -arch x86_64 -isysroot /Developer/SDKs/MacOSX10.6.sdk -L/Users/geth/Development/iPhone/ErlangC_CommandLine/build/Debug -F/Users/geth/Development/iPhone/ErlangC_CommandLine/build/Debug -filelist /Users/geth/Development/iPhone/ErlangC_CommandLine/build/ErlangC_CommandLine.build/Debug/ErlangC_CommandLine.build/Objects-normal/x86_64/ErlangC_CommandLine.LinkFileList -mmacosx-version-min=10.6 -o /Users/geth/Development/iPhone/ErlangC_CommandLine/build/Debug/ErlangC_CommandLine0#
+

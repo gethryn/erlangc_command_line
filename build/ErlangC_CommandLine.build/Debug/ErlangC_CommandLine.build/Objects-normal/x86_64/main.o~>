@@ -1,0 +1,8 @@
+/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c: In function 'main':
+/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c:23: error: 'isIntervalOK' undeclared (first use in this function)
+/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c:23: error: (Each undeclared identifier is reported only once
+/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c:23: error: for each function it appears in.)
+/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c:18: warning: unused variable 'asa_goal'
+/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c:18: warning: unused variable 'svl_goal'
+/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c:18: warning: unused variable 'aht'
+/Users/geth/Development/iPhone/ErlangC_CommandLine/main.c:18: warning: unused variable 'cpi'
