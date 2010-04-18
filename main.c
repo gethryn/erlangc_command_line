@@ -1,6 +1,8 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include <math.h>
+#include <string.h>
+#include <stdlib.h>
 
 // Function prototypes here
 double factorial(double n);
@@ -9,32 +11,58 @@ double traffic_intensity(double cpi, double interval, double aht);
 double erlangc(double cpi, double interval, double aht, double m);
 double svl(double cpi, double interval, double aht, double m, double asa_goal);
 double agent_occ(double cpi, double interval, double aht, double m);
+double asa(double cpi, double interval, double aht, double m);
 int how_many_agents (double cpi, double interval, double aht, double svl_goal, double asa_goal);
 
 
 // main() proc
 int main (int argc, const char * argv[]) {
 	
-	int cpi, interval, aht, svl_goal, asa_goal;
+	char cpi[10], interval[10], aht[10], svl_goal[10], asa_goal[10];
+	int		i_cpi, i_interval, i_aht, i_svl_goal, i_asa_goal;
 	
 	printf("Welcome to the Erlang C Calculator! \n\n");
 	
 	printf("Please enter your calls per interval: ");
-	scanf("%d", &cpi);
+	fgets(cpi, 10, stdin);
+	//cpi[strlen(cpi)-1] = 0;
+	//scanf("%d", &cpi);
 	
-	printf("Please enter your interval length (usually 1800): ");
-	scanf("%d",&interval);
+	printf("Please enter your interval length [1800]: ");
+	fgets(interval, 10, stdin);
+	//scanf("%d",&interval);
 	
 	printf("Please enter your AHT in secs: ");
-	scanf("%d",&aht);
+	fgets(aht, 10, stdin);
+	//scanf("%d",&aht);
 	
-	printf("Please enter your Service Level goal (%%): ");
-	scanf("%d",&svl_goal);
+	printf("Please enter your Service Level goal (%%) [80]: ");
+	fgets(svl_goal, 10, stdin);
+	//scanf("%d",&svl_goal);
 	
-	printf("Please enter your Service Level goal (asa): ");
-	scanf("%d",&asa_goal);
+	printf("Please enter your Service Level goal (asa) [20]: ");
+	fgets(asa_goal, 10, stdin);
+	//scanf("%d",&asa_goal);
 	
+	i_cpi = atoi(cpi);
+	i_interval = atoi(interval);
+	if (i_interval==0) {
+		i_interval = 1800;
+	}
+	i_aht = atoi(aht);
+	i_svl_goal = atoi(svl_goal);
+	if (i_svl_goal==0) {
+		i_svl_goal = 80;
+	}
+	i_asa_goal = atoi(asa_goal);
+	if (i_asa_goal==0) {
+		i_asa_goal = 20;
+	}
 	
+	printf("\n\n");
+	
+	printf("\n\nYour optimum number of agents is %d.\n\n",
+		   how_many_agents(i_cpi, i_interval, i_aht, i_svl_goal, i_asa_goal));
 	
 	
 	return 0;
@@ -98,6 +126,18 @@ double agent_occ(double cpi, double interval, double aht, double m) {
 	return ((cpi/interval*aht) / m);
 }
 
+
+double asa(double cpi, double interval, double aht, double m) {
+	double result = 0;
+	double u = traffic_intensity(cpi, interval, aht);
+	double rho = (u / m); // occupancy
+	
+	result = (erlangc(cpi, interval, aht, m) * aht) / (m * (1-rho));
+	
+	return result;
+}
+
+
 int how_many_agents (double cpi, double interval, double aht, double svl_goal, double asa_goal) {
 	
 	int i = 1;
@@ -114,11 +154,13 @@ int how_many_agents (double cpi, double interval, double aht, double svl_goal, d
 		i++;
 	}
 	
-	printf("For %g NCO with AHT of %g secs (in a %g sec interval), the following table shows approx staff required to meet service level of %g%% in %g secs:\n\n",
+	printf("The following table shows the optimum number of agents (and +/-5 agents)\n");
+	printf("for %g NCO with AHT of %g secs (in a %g sec interval)\nand a service level of %g%% in %g secs:\n\n",
 		   cpi, aht, interval, svl_goal, asa_goal);
 	
 	for (i = low_m; i <= high_m; i++) {
-		printf("%i agents:\tOCC = %g%%,\tSVL = %g%%\n", i, agent_occ(cpi, interval, aht, i)*100, svl(cpi,interval,aht,i,asa_goal)*100);
+		printf("%03i agents:\t\tOCC = %5.1f%%,\t\tSVL = %5.1f%%,\t\tASA = %7.1f\n",
+			   i, agent_occ(cpi, interval, aht, i)*100, svl(cpi,interval,aht,i,asa_goal)*100, asa(cpi,interval,aht,i));
 	}
 
 	
