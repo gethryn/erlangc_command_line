@@ -13,33 +13,38 @@ double svl(double cpi, double interval, double aht, double m, double asa_goal);
 double agent_occ(double cpi, double interval, double aht, double m);
 double asa(double cpi, double interval, double aht, double m);
 int how_many_agents (double cpi, double interval, double aht, double svl_goal, double asa_goal);
+void optimum_staff(double cpi, double interval, double aht, double svl_goal, double asa_goal, double optimum_m, bool bExport);
 
 // Queries the user for inputs to calculate optimum staffing levels, then presents a table of
 // the options to the user from optimum-5 to optimum+10, with corresponding occupancy, svl &
 // average speed of answer.
 int main (int argc, const char * argv[]) {
 	
-	char cpi[10], interval[10], aht[10], svl_goal[10], asa_goal[10];
+	char	cpi[10], interval[10], aht[10], svl_goal[10], asa_goal[10],wantsToExport[5];
 	int		i_cpi, i_interval, i_aht, i_svl_goal, i_asa_goal;
-	printf("==================================================================================\n");
+	bool	bExport=false;
+	
+	printf("================================================================================\n");
 	printf("Welcome to the Erlang C Calculator!\nCopyright (c) 2010 by Gethryn Ghavalas\n");
-	printf("==================================================================================\n\n\n");
+	printf("================================================================================\n\n\n");
+
+
+		printf("Please supply the following:\n\n");
+		printf("Calls per interval (or Number of Calls Offered): ");
+		fgets(cpi, 10, stdin);
 	
-	printf("Please supply the following:\n\n");
-	printf("Calls per interval (or Number of Calls Offered): ");
-	fgets(cpi, 10, stdin);
+		printf("Interval length in secs [1800]: ");
+		fgets(interval, 10, stdin);
 	
-	printf("Interval length in secs [1800]: ");
-	fgets(interval, 10, stdin);
+		printf("AHT in secs: ");
+		fgets(aht, 10, stdin);
 	
-	printf("AHT in secs: ");
-	fgets(aht, 10, stdin);
+		printf("Service Level goal (%%) [80]: ");
+		fgets(svl_goal, 10, stdin);
 	
-	printf("Service Level goal (%%) [80]: ");
-	fgets(svl_goal, 10, stdin);
-	
-	printf("Service Level goal (asa) [20]: ");
-	fgets(asa_goal, 10, stdin);
+		printf("Service Level goal (asa) [20]: ");
+		fgets(asa_goal, 10, stdin);
+	// }
 	
 	i_cpi = atoi(cpi);
 	i_interval = atoi(interval);
@@ -58,10 +63,21 @@ int main (int argc, const char * argv[]) {
 	
 	printf("\n\n");
 	
+	printf("Would you like to export the results to a file? [y/N]: ");
+	fgets(wantsToExport, 5, stdin);
+	wantsToExport[1] = 0;
+	
+	if (wantsToExport[0] == 89 || wantsToExport[0] == 121 ) {
+		// user entered Y or y
+		bExport = true;
+	}
+	
+	optimum_staff(i_cpi, i_interval, i_aht, i_svl_goal, i_asa_goal, 
+				  how_many_agents(i_cpi, i_interval, i_aht, i_svl_goal, i_asa_goal)
+				  ,bExport);
+	
 	printf("\n\nYour optimum number of agents is %d.\n\n",
 		   how_many_agents(i_cpi, i_interval, i_aht, i_svl_goal, i_asa_goal));
-	
-	
 	return 0;
 }
 
@@ -152,9 +168,8 @@ double asa(double cpi, double interval, double aht, double m) {
 // of agents.  The function returns the optiumum number of agents for future use.
 int how_many_agents (double cpi, double interval, double aht, double svl_goal, double asa_goal) {
 	
-	int i = 1;
+	int i = 1, optimum_m;
 	bool optimum_svl = false;
-	int low_m, optimum_m, high_m;
 	
 	// starts at 1 agent, and repeats until the number of agents (i) gives a svl that exceeds
 	// or equals that requested by the user.
@@ -162,10 +177,21 @@ int how_many_agents (double cpi, double interval, double aht, double svl_goal, d
 		if (svl(cpi,interval,aht,i,asa_goal) >= (svl_goal/100)) {
 			optimum_svl = true;
 			optimum_m = i;
-			low_m = i - 5;
-			high_m = i + 10;
 		}
 		i++;
+	}
+	return	optimum_m;
+}
+
+void optimum_staff(double cpi, double interval, double aht, double svl_goal, double asa_goal, double optimum_m, bool bExport ) {
+	int low_m=optimum_m-5, high_m=optimum_m+10, i=0;
+	if (low_m < 1) {
+		low_m = 0;
+	}
+	FILE *fp;
+	
+	if (bExport == true) {
+		fp=fopen("erlang_output.txt", "w+");
 	}
 	
 	printf("The following table shows the optimum number of agents (before shrinkage)\n");
@@ -173,19 +199,31 @@ int how_many_agents (double cpi, double interval, double aht, double svl_goal, d
 		   cpi, aht, interval, svl_goal, asa_goal);
 	
 	// prints the table of options for the user.
+	if (fp != 0) {
+		fprintf(fp, "NCO=%g, INT=%g, AHT=%g, SVL=%g, ASA=%g, OPTIMUM_AGENTS=%g\n\n",
+				cpi,interval,aht,svl_goal,asa_goal,optimum_m);
+		fprintf(fp, "csv style output follows:\n\n");
+		fprintf(fp, "agents,occ,svl,asa\n");
+	}
 	for (i = low_m; i <= high_m; i++) {
 		if (i == optimum_m) {
 			printf("\n");
 		}
-		printf("\n%03i agents:\t\tOCC = %5.1f%%\t\tSVL = %5.1f%%\t\tASA = %7.1f",
-			   i, agent_occ(cpi, interval, aht, i)*100, svl(cpi,interval,aht,i,asa_goal)*100, asa(cpi,interval,aht,i));
+		printf("\n%03i agents:\tOCC = %5.1f%%\tSVL = %5.1f%%\tASA = %7.1f",
+			   i, agent_occ(cpi, interval, aht, i)*100, 
+			   svl(cpi,interval,aht,i,asa_goal)*100, asa(cpi,interval,aht,i));
+		if (fp != 0) {
+			fprintf(fp, "%i,%g,%g,%g\n",
+					i, agent_occ(cpi, interval, aht, i)*100, 
+					svl(cpi,interval,aht,i,asa_goal)*100, asa(cpi,interval,aht,i));
+		}
 		if (i == optimum_m) {
 			printf("   OPTIMUM\n");
 		}
 	}
-
-	
-	return optimum_m;
+	if (fp != 0) {
+		fclose(fp);
+	}
 }
 
 
