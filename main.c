@@ -15,19 +15,25 @@ int how_many_agents (double cpi, double interval, double aht, double svl_goal, d
 // main() proc
 int main (int argc, const char * argv[]) {
 	
-	int cpi, interval=1800, aht, svl_goal, asa_goal;
-	char * isIntervalOK;
-	int new_interval;
+	int cpi, interval, aht, svl_goal, asa_goal;
 	
 	printf("Welcome to the Erlang C Calculator! \n\n");
 	
-	printf("Please confirm that your interval length is %i secs [y/n]: ", interval);
-	scanf("%s", &isIntervalOK);
-	printf("%s", isIntervalOK);
-	if (isIntervalOK=="n") {
-		printf("Please enter your interval length in secs: ");
-		scanf("%i", &new_interval);
-	}
+	printf("Please enter your calls per interval: ");
+	scanf("%d", &cpi);
+	
+	printf("Please enter your interval length (usually 1800): ");
+	scanf("%d",&interval);
+	
+	printf("Please enter your AHT in secs: ");
+	scanf("%d",&aht);
+	
+	printf("Please enter your Service Level goal (%%): ");
+	scanf("%d",&svl_goal);
+	
+	printf("Please enter your Service Level goal (asa): ");
+	scanf("%d",&asa_goal);
+	
 	
 	
 	
@@ -82,7 +88,7 @@ double svl(double cpi, double interval, double aht, double m, double asa_goal) {
 	double result = 0;
 	double u = traffic_intensity(cpi, interval, aht);
 	
-	result = (1.0-(erlangc(cpi, interval, aht, m) * exp((-(u-m)) * asa_goal / aht)));
+	result = (1.0-(erlangc(cpi, interval, aht, m) * exp((-(m-u)) * (asa_goal / aht))));
 	
 	return result;
 }
