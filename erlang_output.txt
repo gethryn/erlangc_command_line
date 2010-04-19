@@ -1,8 +1,10 @@
+
 NCO=360, INT=1800, AHT=240, SVL=80, ASA=15, OPTIMUM_AGENTS=55
 
 csv style output follows:
 
 agents,occ,svl,asa
+
 50,96,38.7145,83.3347
 51,94.1176,52.6259,45.7152
 52,92.3077,63.7055,27.9618
