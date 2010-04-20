@@ -64,24 +64,40 @@ int main (int argc, const char * argv[]) {
 	printf("Occupancy goal (to ignore, leave at 100) [100]: ");
 	fgets(occ_goal, 5, stdin);
 	
+	printf("\n\n");
+	
 	i_cpi = atoi(cpi);
+	if (i_cpi<1) {
+		i_cpi=1;
+		printf("CPI: [set to 1 due to invalid entry]   >> %s",cpi);
+	}
 	i_interval = atoi(interval);
-	if (i_interval==0) {
+	if (i_interval<=0 || i_interval>3600) {
 		i_interval = 1800;
+		printf("INT: [applied default 1800 secs -- 0<interval<=3600]   >> %s",interval);
 	}
 	i_aht = atoi(aht);
+	if (i_aht <= 0) {
+		i_aht = 1;
+		printf("AHT: [min 1 sec applied due to invalid entry]   >> %s",aht);
+	} else if (i_aht>3600) {
+		i_aht = 3600;
+		printf("AHT: [applied max 3600 sec aht due to invalid entry]   >> %s",aht);
+	}
 	i_svl_goal = atoi(svl_goal);
-	if (i_svl_goal==0) {
+	if (i_svl_goal<=0 || i_svl_goal > 100) {
 		i_svl_goal = 80;
+		printf("SVL: [applied default service level of 80%%]   >> %s",svl_goal);
 	}
 	i_asa_goal = atoi(asa_goal);
-	if (i_asa_goal==0) {
+	if (i_asa_goal<=0 || i_asa_goal > 600) {
 		i_asa_goal = 20;
+		printf("ASA: [default of 20 secs applied -- 0<asa_goal<600]   >> %s",asa_goal);
 	}
 	i_occ_goal = atoi(occ_goal);
 	if (i_occ_goal<=0 || i_occ_goal > 100) {
 		i_occ_goal = 100;
-		printf("[applied default occupancy of 100%%]\n");
+		printf("OCC: [applied default occupancy of 100%%]   >> %s",occ_goal);
 	} 
 
 	
