@@ -10,6 +10,7 @@ double factorial(double n);
 double poisson(double m, double u, bool cuml);
 double traffic_intensity(double cpi, double interval, double aht);
 double erlangc(double cpi, double interval, double aht, double m);
+double erlangb(double m, double u);
 double svl(double cpi, double interval, double aht, double m, double asa_goal);
 double agent_occ(double cpi, double interval, double aht, double m);
 double asa(double cpi, double interval, double aht, double m);
@@ -175,6 +176,18 @@ double erlangc(double cpi, double interval, double aht, double m) {
 	return result;
 }
 
+// calculates the Erlang B formula -- the likelihood that a call will be lost.
+// Adapted from http://en.wikipedia.org/wiki/Erlang_unit
+double erlangb(double m, double u) {
+	double invb = 1.0;
+	int j;
+	
+	for (j=0; j<=m; j++) {
+		invb = 1.0 + j / u * invb;
+	}
+	return 1.0 / invb;
+}
+
 // calculates the probability a call/event will be answered/processed within a goal answer time
 // takes same arguments as erlang c function, and adds the goal answer time (asa_goal) in secs.
 double svl(double cpi, double interval, double aht, double m, double asa_goal) {
@@ -219,7 +232,8 @@ int how_many_agents (double cpi, double interval, double aht, double svl_goal,
 	while (optimum_svl == false) {
 		if ((svl(cpi,interval,aht,i,asa_goal) >= (svl_goal/100.0)) && 
 			agent_occ(cpi, interval, aht, i)<1.0 && 
-			agent_occ(cpi, interval, aht, i)<=(occ_goal/100.0)) {
+			agent_occ(cpi, interval, aht, i)<=(occ_goal/100.0) &&
+			asa(cpi,interval,aht,i) <= asa_goal) {
 			optimum_svl = true;
 			optimum_m = i;
 		}
